@@ -1,0 +1,33 @@
+# Part 3: Written Responses
+
+Answer the three questions listed in the Part 3 section of the README. We strongly suggest you do not use AI tools for this section; expect to walk through your answers in an interview. Limit each response to 200 words or fewer.
+
+1. Pick one public question your pipeline answers correctly and one it gets wrong or abstains on. Quote the value or abstention reason your final answers.json holds for the failed one. Explain what retrieval or reasoning decision separates the two, and name the function or query you would change with another day. 
+
+My pipeline correctly answers Question 6, which is who led the Outlaws in scoring against the Herons on April 5, 2026. The final answers.json returns "Devonte Abbott" with 23 points. Retrieval identifies the matchup, joins its box scores, and derive_structured_answer() selects the highest-scoring Outlaws player.
+
+It abstains on Question 4, which asks how many points Deshawn Carver scored in the Outlaws’ season opener. The saved result is {"answerable": false, "points": 0, "evidence": []}. Here, 0 is the required template default. _expand_game_ids() selects the team’s earliest game, but filtering its box scores produces no supporting row for Carver. _answer_from_sources() therefore abstains. 
+
+The difference is whether the joined tables support the requested calculation: Question 6 has the rows needed to determine a maximum; Question 4 however lacks the player-game observation.
+
+If I have a chance I would improve _answer_from_sources() to log explicit abstention diagnostics, distinguishing missing source rows from entity-resolution failures or invalid model output. Also, I would preserve the required JSON format and continue abstaining when the underlying fact is unavailable.
+
+2. Pick one data source to add to this pipeline: player tracking data (29 skeletal points per player at 60 frames per second) or a text corpus of scouting reports and internal notes. Name one question a coach or executive could ask that becomes answerable only with that source. Describe how you would represent, retrieve, and validate it, and where the current embed.py / rag.py design would break.
+
+I would add a text corpus of scouting reports and internal notes. A coach could ask: "Which prospects do our scouts consider best at recognizing defensive traps and find open teammate, and where do the evaluations disagree?" The existing game results, box scores, recaps, and injury notes do not contain those scouting judgments.
+
+I would store each report with its author, date, version, player identifiers, and access permissions. I would split reports into sections or paragraphs, preserving document IDs and page references, then embed each chunk.
+
+Retrieval would combine keyword and vector search with player, date, and permission filters. I would retrieve neighboring paragraphs for context and preserve differing assessments with their authors and dates.
+
+Validation would require citations supporting each claimed evaluation. I would build a manually reviewed set of questions covering agreement, conflicting reports, and missing evidence, measuring retrieval coverage and whether answers accurately represent the sources.
+
+The current embed.py treats existing source rows as document units. So long reports would need to be chunked and version tracked. In rag.py, _expand_game_ids() and subsequent joins organize evidence around games. Prospect reports may describe several games or no specific game, so retrieval and citation handling would need to support document-based evidence independently of game IDs.
+
+3. Given the opportunity to work with any group in Basketball Operations (coaching, performance, scouting, strategy, etc.), which would you be most excited to work with and why?
+
+If I have the opportunity to work with any group in Basketball Operations, the most excited group to work with is going to be the coaching staffs. We have all heard about how NBA coaching staffs prepare the game before it starts. And such prepaerment would require to handle a large amount of data. If we could use more advanced AI tools on it I am confident that we can elevate the efficiency on this part. So the coaching staffs may save more time in order for building our future game plan.
+
+This is a great opportunity for applied AI technology. And with the combination of human and advanced technology, we could achieve something which is never seen before. A lot of people would say baketball game is about math and analysis, I totallt agree with that. We need to understand the pattern behind the game so that we can use it as our advantages. I am really excited to see how basketball and AI technology would combine, and what spark can it produce.
+
+
