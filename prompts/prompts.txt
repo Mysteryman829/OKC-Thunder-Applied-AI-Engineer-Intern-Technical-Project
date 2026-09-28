@@ -1,0 +1,46 @@
+Models: GPT-6
+
+Prompt 1 [GPT-6]:
+Complete the TODO in backend/embed.py, rag.py.
+The starter ingests six CSVs into PostgreSQL, embeds one document per game with nomic-embed-text, retrieves with pgvector, and asks qwen3.5:2b for a JSON answer shaped by each question's return block. Run as shipped, it answers a couple of questions and abstains on the rest.
+Data: four structured tables (game_details, player_box_scores, players, teams), plus game_recaps.csv and injury_notes.csv (pre-game availability reports). Extend the pipeline to embed and retrieve the box scores, recaps, join and reason over them in backend/rag.py, and point backend/server.py's /api/chat at your answer path.
+python -m backend.rag must read part1/questions.json at runtime and write part1/answers.json. part1/answers_template.json shows the shape and python -m backend.validate checks it. The schema covers only the public questions; drive your output from each question's return block, not from the schema.hold for the question tier, grading rules and answer rules.
+
+Prompt 2 [GPT-6]:
+### Question tiers
+
+Each of the 11 questions in `questions.json` has a `tier`:
+
+- **`core`** (4): a lookup off the box scores and game details plus one step of reasoning, such as finding a team's first game or its top scorer in a named game. One core question deliberately has no supporting row.
+- **`extended`** (4): filters and aggregates over the structured tables, such as a monthly total or a team's largest margin of defeat.
+- **`stretch`** (3): facts that exist only in the recap and injury-note text, such as why a player missed a game.
+
+Handle all three tiers through one general retrieve-reason-format flow. Don't special-case questions or tiers.
+
+Grading
+
+The public questions are examples. Grading swaps in hidden questions of the same kinds with different wording, players, teams, dates, and ids. Don't branch on question ids or hard-code names or values; we read the code and grade mainly on the hidden set.
+
+The core tier is the minimum bar. Similarity search over the starter's game documents alone will not clear it; the core questions need the box scores joined in and a small amount of structured reasoning (an ordinal, a per-game maximum) on top of retrieval.
+
+Grading re-runs your pipeline from scratch on canonical data with the exact model digests below and compares the fresh output to your committed `answers.json`. A mismatch is flagged for review, and the fresh run is what gets scored.
+
+Answer rules
+
+- The data is the only source of truth. Teams and players are fictional.
+- The tables are authoritative. Recaps and injury notes are written from the tables, and a recap can be wrong; when they disagree, the tables win.
+- If the data cannot answer a question, return `"answerable": false`, template defaults for the other fields, and an empty `evidence` list. A confident number for a missing row scores zero.
+- Cite every source row used, with the keys in the question's `return.evidence` block: `game_details` by `game_id`, `player_box_scores` by `game_id` + `person_id`, `game_recaps` by `recap_id`, `injury_notes` by `note_id`. Cite a recap or note together with the game it describes. For aggregates, cite every contributing row.
+- Format scores as `"<winner points>-<loser points>"`, e.g. `"117-102"`.
+- Use team mascots (e.g. `"Outlaws"`) and player names exactly as they appear in `teams.csv` and `players.csv`.
+- The All-Star break is February 13-18, 2026; "after the break" means on or after February 19.
+
+Prompt 3 [GPT-6]:
+Put my name Qingyang Song, my email qingyangsong10@gmail.com, and the final Ollama model digest in the submission.md
+
+Prompt 4 [GPT-6]:
+How can I do this`backend/server.py` at your answer path, run the frontend in `frontend/` against it
+
+Prompt 5 [GPT-6]:
+Could you give me three questions that I can ask, including one that pipeline gets wrong or declines if you can
+
