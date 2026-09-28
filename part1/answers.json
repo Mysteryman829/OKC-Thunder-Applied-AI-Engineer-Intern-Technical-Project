@@ -1,0 +1,291 @@
+[
+  {
+    "id": 1,
+    "result": {
+      "answerable": true,
+      "points": 159,
+      "games": 7,
+      "evidence": [
+        {
+          "table": "game_details",
+          "id": 100345
+        },
+        {
+          "table": "game_details",
+          "id": 100372
+        },
+        {
+          "table": "game_details",
+          "id": 100394
+        },
+        {
+          "table": "game_details",
+          "id": 100406
+        },
+        {
+          "table": "game_details",
+          "id": 100417
+        },
+        {
+          "table": "game_details",
+          "id": 100458
+        },
+        {
+          "table": "game_details",
+          "id": 100489
+        },
+        {
+          "table": "player_box_scores",
+          "game_id": 100345,
+          "person_id": 44729
+        },
+        {
+          "table": "player_box_scores",
+          "game_id": 100372,
+          "person_id": 44729
+        },
+        {
+          "table": "player_box_scores",
+          "game_id": 100394,
+          "person_id": 44729
+        },
+        {
+          "table": "player_box_scores",
+          "game_id": 100406,
+          "person_id": 44729
+        },
+        {
+          "table": "player_box_scores",
+          "game_id": 100417,
+          "person_id": 44729
+        },
+        {
+          "table": "player_box_scores",
+          "game_id": 100458,
+          "person_id": 44729
+        },
+        {
+          "table": "player_box_scores",
+          "game_id": 100489,
+          "person_id": 44729
+        }
+      ]
+    }
+  },
+  {
+    "id": 2,
+    "result": {
+      "answerable": true,
+      "player_name": "Kwame Ellison-Reyes",
+      "points": 139,
+      "evidence": [
+        {
+          "table": "game_details",
+          "id": 100233
+        },
+        {
+          "table": "game_details",
+          "id": 100261
+        },
+        {
+          "table": "game_details",
+          "id": 100371
+        },
+        {
+          "table": "game_details",
+          "id": 100387
+        },
+        {
+          "table": "game_details",
+          "id": 100782
+        },
+        {
+          "table": "player_box_scores",
+          "game_id": 100233,
+          "person_id": 89156
+        },
+        {
+          "table": "player_box_scores",
+          "game_id": 100261,
+          "person_id": 89156
+        },
+        {
+          "table": "player_box_scores",
+          "game_id": 100371,
+          "person_id": 89156
+        },
+        {
+          "table": "player_box_scores",
+          "game_id": 100387,
+          "person_id": 89156
+        },
+        {
+          "table": "player_box_scores",
+          "game_id": 100782,
+          "person_id": 89156
+        }
+      ]
+    }
+  },
+  {
+    "id": 3,
+    "result": {
+      "answerable": true,
+      "player_name": "Ezekiel Easton",
+      "games": 2,
+      "evidence": [
+        {
+          "table": "game_details",
+          "id": 100759
+        },
+        {
+          "table": "game_details",
+          "id": 100782
+        },
+        {
+          "table": "player_box_scores",
+          "game_id": 100759,
+          "person_id": 65473
+        },
+        {
+          "table": "player_box_scores",
+          "game_id": 100782,
+          "person_id": 65473
+        }
+      ]
+    }
+  },
+  {
+    "id": 4,
+    "result": {
+      "answerable": false,
+      "points": 0,
+      "evidence": []
+    }
+  },
+  {
+    "id": 5,
+    "result": {
+      "answerable": true,
+      "winner": "Outlaws",
+      "score": "128-110",
+      "evidence": [
+        {
+          "table": "game_details",
+          "id": 100841
+        }
+      ]
+    }
+  },
+  {
+    "id": 6,
+    "result": {
+      "answerable": true,
+      "player_name": "Devonte Abbott",
+      "points": 23,
+      "evidence": [
+        {
+          "table": "game_details",
+          "id": 100805
+        },
+        {
+          "table": "player_box_scores",
+          "game_id": 100805,
+          "person_id": 40792
+        }
+      ]
+    }
+  },
+  {
+    "id": 7,
+    "result": {
+      "answerable": true,
+      "opponent": "Ospreys",
+      "deficit": 14,
+      "score": "125-124",
+      "evidence": [
+        {
+          "table": "game_details",
+          "id": 100006
+        },
+        {
+          "table": "game_recaps",
+          "id": 6
+        }
+      ]
+    }
+  },
+  {
+    "id": 8,
+    "result": {
+      "answerable": true,
+      "player_name": "Samir Zimmer",
+      "evidence": [
+        {
+          "table": "game_details",
+          "id": 100006
+        },
+        {
+          "table": "player_box_scores",
+          "game_id": 100006,
+          "person_id": 17023
+        },
+        {
+          "table": "game_recaps",
+          "id": 6
+        }
+      ]
+    }
+  },
+  {
+    "id": 9,
+    "result": {
+      "answerable": true,
+      "status": "out",
+      "reason": "The injury note explicitly states that Kwame Ellison-Reyes missed the game due to a calf injury.",
+      "evidence": [
+        {
+          "table": "injury_notes",
+          "id": 2166
+        },
+        {
+          "table": "game_details",
+          "id": 100563
+        }
+      ]
+    }
+  },
+  {
+    "id": 10,
+    "result": {
+      "answerable": true,
+      "points": 55,
+      "evidence": [
+        {
+          "table": "game_details",
+          "id": 100039
+        },
+        {
+          "table": "player_box_scores",
+          "game_id": 100039,
+          "person_id": 89156
+        }
+      ]
+    }
+  },
+  {
+    "id": 11,
+    "result": {
+      "answerable": true,
+      "opponent": "Wranglers",
+      "margin": 32,
+      "score": "135-103",
+      "evidence": [
+        {
+          "table": "game_details",
+          "id": 100796
+        }
+      ]
+    }
+  }
+]
